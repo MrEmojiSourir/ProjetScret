@@ -6,10 +6,12 @@ import win32con
 import sys
 from color import *
 
-os.system("CLS")
+os.system("CLS")    
+sys.stdout.write(RESET)
 
 version = "Imagination du projet"
-logiciel_name = "Beurre"
+logiciel_name = "Automatizer"
+terminale_power = True
 
 fondateur = [
     "MrEmojiSourir",
@@ -27,30 +29,32 @@ administrateur = [
     "{ Cecemel_PvP }"
 ]
 
+def jsp():
+    os.system("CLS")    
+    sys.stdout.write(BWhite)
+    print(f"Merci d'utiliser {logiciel_name} V{version}")
+    print(f" Créer par : Fondateur : {fondateur},\n Developeur : {developeur},\n Administrateur : {administrateur}")
 
-# def click(x,y):
-#     win32api.SetCursorPos((x,y))
-#     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,x,y,0,0)
-#     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,x,y,0,0)
-# time.sleep(2)
+    sys.stdout.write(RESET)
+    print("\nFonctionement : \n Marqué 'keyboard' ou 'mousse' puis suiver les instruction une fois fini marqué 'STOP'")
 
-# while True:
-#     # keyboard.write("z")
-#     # keyboard.press_and_release('<')
+
+while terminale_power:
+    jsp()
+    fonction = input("'mousse'/'keyboard'>")
+
+    if fonction == "mousse":
+        print("Mousse")
+        time.sleep(0.5)
+        jsp()
     
+    elif fonction == "keyboard":
+        print("Keyboard")
+        time.sleep(0.5)
+        jsp()
+    
+    elif fonction == "STOP":
+        terminale_power = False
 
-#     clickon = True
-#     nb = 0
-#     while clickon:
-#         click(960,540)
-#         nb =+ 1 
-#         if nb == 50:
-#             clickon = False
-
-#     time.sleep(1)
-
-print(f"Merci d'utiliser {logiciel_name} V{version}")
-print(f" Créer par : Fondateur : {fondateur},\n Developeur : {developeur},\n Administrateur : {administrateur}")
-
-sys.stdout.write(RED)
-print("test !")
+    else:
+        print("Marque bien 'keyboard' ou 'mousse' ou 'STOP' si tu as fini")
