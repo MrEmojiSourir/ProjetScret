@@ -1,3 +1,6 @@
+#conding:utf-8
+
+# Importation des modules
 import keyboard
 import os
 import time
@@ -6,16 +9,15 @@ import win32con
 import sys
 from color import *
 from tkinter import*
+from tkinter.messagebox import *
 
 os.system("CLS")    
-sys.stdout.write(RESET)
 
-version = "Imagination du projet"
+# Variable - Logiciel
+version = "0.0"
 logiciel_name = "Automatizer"
-terminale_power = True
 
-nb = 0
-
+# Variable - STAFF
 fondateur = [
     "MrEmojiSourir",
     "link1183"
@@ -32,58 +34,60 @@ administrateur = [
     "{ Cecemel_PvP }"
 ]
 
+#  Configuration du logiciel
 main = Tk()
 main.geometry("800x800")
 main.maxsize(800, 800)
 main.minsize(800, 800)
+main.title("Automatizer | En Dev")
 
-# def jsp():
-#     os.system("CLS")    
-#     sys.stdout.write(BWhite)
-#     print(f"Merci d'utiliser {logiciel_name} V{version}")
-#     print(f" Créer par : Fondateur : {fondateur},\n Developeur : {developeur},\n Administrateur : {administrateur}")
+# Bar de menus
+def alert():
+    showinfo("alerte", "Bravo!")
 
-#     sys.stdout.write(RESET)
-#     print("\nFonctionement : \n Marqué 'keyboard' ou 'mousse' puis suiver les instruction une fois fini marqué 'STOP' \n Le [0] c'est le nombre de foncgtion que vous avez mit en place \n")
+menubar = Menu(main)
 
+menu1 = Menu(menubar, tearoff=0)
+menu1.add_command(label="Créer", command=alert)
+menu1.add_command(label="Editer", command=alert)
+menu1.add_separator()
+menu1.add_command(label="Quitter", command=main.quit)
+menubar.add_cascade(label="Fichier", menu=menu1)
 
-# while terminale_power:
-#     jsp()
-#     fonction = input(f"[{nb}]'mousse'/'keyboard'>")
+menu2 = Menu(menubar, tearoff=0)
+menu2.add_command(label="Couper", command=alert)
+menu2.add_command(label="Copier", command=alert)
+menu2.add_command(label="Coller", command=alert)
+menubar.add_cascade(label="Editer", menu=menu2)
 
-#     if fonction == "mousse":
-#         print("Mousse")
-#         time.sleep(0.5)
-#         jsp()
-    
-#     elif fonction == "keyboard":
-#         print("Keyboard / Clavier")
+menu3 = Menu(menubar, tearoff=0)
+menu3.add_command(label="A propos", command=alert)
+menu3.add_command(label="Le staff", command=alert)
+menubar.add_cascade(label="Aide", menu=menu3)
 
-#         print("Choisir ce que vous voulez (Mettre le numéro selon la fonction):\
-#         [0] : écrire un text\
-#         ")
+main.config(menu=menubar)
 
-#         keynb = input(">>>")
+# Liste des événements
+l = LabelFrame(main, text="Les événement :", padx=20, pady=250, cursor="cross")
+l.pack(side=BOTTOM, fill="both", expand="no")
+ 
+Label(l, text="[0] : Keyboard", compound=TOP).pack()
+Label(l, text="[1] : Mousse").pack()
 
-#         if keynb == 0:
-#             write = input("Quelle text est à ecrire : ")
+# Bouton !!!!!
+def clavier():
+    ClavierFEN = Tk()
 
-#             fichier = open("macro.py", "a")
-#             fichier.write(f"keyboard.write('{write}')")
-#             fichier.close()
+    value = StringVar() 
+    write = Radiobutton(ClavierFEN, text="écrire un text", variable=value, value=1)
+    presse = Radiobutton(ClavierFEN, text="Cliquez sur un bouton puis relachez", variable=value, value=2)
+    write.pack()
+    presse.pack()
 
-#         nb =+ 1
-#         time.sleep(0.5)
-#         jsp()
-    
-#     elif fonction == "STOP":
-#         terminale_power = False
+    entree = Entry(ClavierFEN, width=30)
+    entree.pack()
 
-#         print("Execution du programme")
-
-#         import macro
-
-#     else:
-#         print("Marque bien 'keyboard' ou 'mousse' ou 'STOP' si tu as fini")
+clavier  = Button(main, text="Clavier", command=clavier)
+clavier.pack(side=TOP)
 
 main.mainloop()
